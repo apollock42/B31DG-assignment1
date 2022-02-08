@@ -6,8 +6,9 @@ const int ledGreen =15;
 int pulseState =0; //setting the initial state of the buttons as off.
 int modeState=0;
 const int a=1100; //my second name is pollock and it gave me 1100,1200,16,6000 and mode 1
-const int b=1200; //this is setting up the time dalay's for the code.
+const int b=1200; //this is setting up the time dalay's and c for the code.
 const int d=6000;
+int c =16;
 
 void setup() {
   Serial.begin(9600);
@@ -21,16 +22,21 @@ void setup() {
 void loop() {
   pulseState=digitalRead(pulsesButt); //reading the buttonpins at the beggining of the loop fuinction
   modeState=digitalRead(modeButt);
-  int c=16;
+  
+  
   if(modeState==HIGH){ //setting c to 16 or 13 depending on the mode buttons state
     c=13;
   }
+  else {
+    c=16;
+  }
+  
   if(pulseState == LOW){ //if the pulse button is not being pressed the pulses will not be disabled
     for(int i=0 ; i<c ; i++){ //for loop that will repeat c times.
       int j=a+(i*50);
       digitalWrite(ledGreen,HIGH); //setting the green LED to be on for a plus an incrementing time.  
-      delayMicroseconds(j); //then off for b time. 
-      digitalWrite(ledGreen,LOW);
+      delayMicroseconds(j);  
+      digitalWrite(ledGreen,LOW);//then off for b time.
       delayMicroseconds(b);
     }
   }
