@@ -16,7 +16,6 @@ void setup() {
   pinMode(ledGreen, OUTPUT);
   pinMode(pulsesButt,INPUT);
   pinMode(modeButt,INPUT);
-  Serial.print("start");
 }
 
 void loop() {
@@ -24,14 +23,13 @@ void loop() {
   modeState=digitalRead(modeButt);
   int c=16;
   if(modeState==HIGH){ //setting c to 16 or 13 depending on the mode buttons state
-    Serial.print("dfgdf");
     c=13;
   }
   if(pulseState == LOW){ //if the pulse button is not being pressed the pulses will not be disabled
     for(int i=0 ; i<c ; i++){ //for loop that will repeat c times.
+      int j=a+(i*50);
       digitalWrite(ledGreen,HIGH); //setting the green LED to be on for a plus an incrementing time.  
-      delayMicroseconds(a+(i*50)); //then off for b time. 
-      Serial.print("1");
+      delayMicroseconds(j); //then off for b time. 
       digitalWrite(ledGreen,LOW);
       delayMicroseconds(b);
     }
